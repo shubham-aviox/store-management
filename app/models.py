@@ -12,7 +12,7 @@ class Item(Base):
 	store_id = Column(Integer,ForeignKey('stores.id'),nullable=False)
 
 	def __repr__(self):
-        return 'ItemModel(name=%s, price=%s,store_id=%s)' % (self.name, self.price,self.store_id)
+		return 'ItemModel(name=%s, price=%s,store_id=%s)' % (self.name, self.price,self.store_id)
 
 
 class Store(Base):
@@ -20,3 +20,6 @@ class Store(Base):
 	id = Column(Integer, primary_key=True, index=True)
 	name = Column(String, nullable=False, unique=True)
 	items = relationship("Item", primaryjoin="Store.id == Item.store_id", cascade="all, delete-orphan")
+
+	def __repr__(self):
+		return 'Store(name=%s)'% self.name
